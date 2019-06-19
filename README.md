@@ -1,9 +1,9 @@
-Terraform AWS Classic Load Balancer
+Terraform AWS Network Load Balancer
 ===================================
 
-[![CircleCI](https://circleci.com/gh/infrablocks/terraform-aws-classic-load-balancer.svg?style=svg)](https://circleci.com/gh/infrablocks/terraform-aws-classic-load-balancer)
+[![CircleCI](https://circleci.com/gh/infrablocks/terraform-aws-network-load-balancer.svg?style=svg)](https://circleci.com/gh/infrablocks/terraform-aws-network-load-balancer)
 
-A Terraform module for building a classic load balancer in AWS.
+A Terraform module for building a network load balancer in AWS.
 
 The load balancer requires:
 * An existing VPC
@@ -25,7 +25,7 @@ The ECS load balancer consists of:
   * In the public hosted zone if specified
   * In the private hosted zone if specified
 
-![Diagram of infrastructure managed by this module](https://raw.githubusercontent.com/infrablocks/terraform-aws-classic-load-balancer/master/docs/architecture.png)
+![Diagram of infrastructure managed by this module](https://raw.githubusercontent.com/infrablocks/terraform-aws-network-load-balancer/master/docs/architecture.png)
 
 Usage
 -----
@@ -34,8 +34,8 @@ To use the module, include something like the following in your terraform
 configuration:
 
 ```hcl-terraform
-module "classic_load_balancer" {
-  source  = "infrablocks/classic-load-balancer/aws"
+module "network_load_balancer" {
+  source  = "infrablocks/network-load-balancer/aws"
   version = "0.1.7"
 
   region = "eu-west-2"
@@ -144,8 +144,6 @@ for usage instructions.
 | zone_id                                 | The zone ID of the created ELB                            |
 | dns_name                                | The DNS name of the created ELB                           |
 | address                                 | The address of the DNS record(s) for the created ELB      |
-| security_group_id                       | The ID of the ELB security group                          |
-| open_to_load_balancer_security_group_id | The ID of the security group allowing access from the ELB |
 
 
 Development
@@ -271,7 +269,7 @@ openssl aes-256-cbc \
 Contributing
 ------------
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/infrablocks/terraform-aws-classic-load-balancer. 
+Bug reports and pull requests are welcome on GitHub at https://github.com/infrablocks/terraform-aws-network-load-balancer. 
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to 
 the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 

@@ -6,8 +6,8 @@ resource "aws_route53_record" "service_public" {
   count = "${var.include_public_dns_record == "yes" ? 1 : 0}"
 
   alias {
-    name = "${aws_elb.load_balancer.dns_name}"
-    zone_id = "${aws_elb.load_balancer.zone_id}"
+    name = "${aws_lb.load_balancer.dns_name}"
+    zone_id = "${aws_lb.load_balancer.zone_id}"
     evaluate_target_health = false
   }
 }
@@ -20,8 +20,8 @@ resource "aws_route53_record" "service_private" {
   count = "${var.include_private_dns_record == "yes" ? 1 : 0}"
 
   alias {
-    name = "${aws_elb.load_balancer.dns_name}"
-    zone_id = "${aws_elb.load_balancer.zone_id}"
+    name = "${aws_lb.load_balancer.dns_name}"
+    zone_id = "${aws_lb.load_balancer.zone_id}"
     evaluate_target_health = false
   }
 }

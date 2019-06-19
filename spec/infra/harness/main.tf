@@ -6,7 +6,7 @@ data "terraform_remote_state" "prerequisites" {
   }
 }
 
-module "classic_load_balancer" {
+module "network_load_balancer" {
   source = "../../../../"
 
   region = "${var.region}"
@@ -19,22 +19,7 @@ module "classic_load_balancer" {
 
   component = "${var.component}"
   deployment_identifier = "${var.deployment_identifier}"
-
-  listeners = "${var.listeners}"
-  access_control = "${var.access_control}"
-
-  egress_cidrs = "${var.egress_cidrs}"
-
-  health_check_target = "${var.health_check_target}"
-  health_check_timeout = "${var.health_check_timeout}"
-  health_check_interval = "${var.health_check_interval}"
-  health_check_unhealthy_threshold = "${var.health_check_unhealthy_threshold}"
-  health_check_healthy_threshold = "${var.health_check_healthy_threshold}"
-
   enable_cross_zone_load_balancing = "${var.enable_cross_zone_load_balancing}"
-
-  enable_connection_draining = "${var.enable_connection_draining}"
-  connection_draining_timeout = "${var.connection_draining_timeout}"
 
   idle_timeout = "${var.idle_timeout}"
 
