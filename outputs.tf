@@ -6,16 +6,15 @@ output "name" {
 output "id" {
   description = "The id of the created NLB."
   value = "${aws_lb.load_balancer.id}"
-
 }
 
 output "arn" {
-  description = "The arn of the created NLB."
+  description = "The ARN of the created NLB."
   value = "${aws_lb.load_balancer.arn}"
 }
 
 output "arn_suffix" {
-  description = "The arn suffix of the created NLB."
+  description = "The ARN suffix of the created NLB."
   value = "${aws_lb.load_balancer.arn_suffix}"
 }
 
