@@ -14,3 +14,19 @@ module "base_network" {
 
   infrastructure_events_bucket = "${var.infrastructure_events_bucket}"
 }
+
+
+resource "aws_acm_certificate" "wildcard_certificate" {
+  domain_name       = "*.${var.domain_name}"
+  validation_method = "DNS"
+
+  tags = {
+    Name = "wildcard-cert-${var.component}-${var.deployment_identifier}"
+    Component = "${var.component}"
+    DeploymentIdentifier = "${var.deployment_identifier}"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}

@@ -9,3 +9,6 @@ variable "dependencies" {}
 variable "private_zone_id" {}
 
 variable "infrastructure_events_bucket" {}
+
+
+variable "domain_name" {}

@@ -21,10 +21,11 @@ use_https: 'no'
 target_group_port: 3023
 target_group_type: 'instance'
 target_group_protocol: 'HTTP'
-health_check_enabled: 'yes'
-health_check_port: 80
+health_check_port: 'traffic-port'
 health_check_protocol: 'HTTP'
 health_check_healthy_threshold: 5
 health_check_unhealthy_threshold: 5
 health_check_interval: 20
-health_check_timeout: 10
+health_check_timeout: 5
+health_check_path: '/ping'
+health_check_interval: 30

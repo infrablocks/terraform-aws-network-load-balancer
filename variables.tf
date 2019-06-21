@@ -69,10 +69,6 @@ variable "target_group_protocol" {
   default = "HTTP"
 }
 
-variable "health_check_enabled" {
-  description = "wheter or not to enable NLB healthcheck"
-  default = true
-}
 variable "health_check_port" {
   description = "The port to use to connect with the target. Either ports 1-65536, or traffic-port. Defaults to traffic-port"
   default = "traffic-port"
@@ -100,7 +96,15 @@ variable "health_check_healthy_threshold" {
   default = 10
 }
 
-//variable "listener_port" {}
-//variable "listener_protocol" {}
-//variable "listener_certificate_arn" {}
+variable "listener_port" {
+  description = "The port on which the load balancer is listening. Defaults to 443"
+  default = 443
+}
+variable "listener_protocol" {
+  description = "The protocol for connections from clients to the load balancer. Either TCP or TLS"
+  default = "TLS"
+}
+variable "listener_certificate_arn" {
+  description = "The ARN of the default SSL server certificate"
+}
 

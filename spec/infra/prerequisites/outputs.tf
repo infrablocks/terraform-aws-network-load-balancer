@@ -9,3 +9,7 @@ output "vpc_cidr" {
 output "subnet_ids" {
   value = "${module.base_network.public_subnet_ids}"
 }
+
+output "certificate_arn" {
+  value = "${aws_acm_certificate.wildcard_certificate.arn}"
+}

@@ -3,6 +3,11 @@ output "name" {
   value = "${aws_lb.load_balancer.name}"
 }
 
+output "vpc_id" {
+  description = "The VPC ID of the created NLB."
+  value = "${aws_lb.load_balancer.vpc_id}"
+}
+
 output "id" {
   description = "The id of the created NLB."
   value = "${aws_lb.load_balancer.id}"
