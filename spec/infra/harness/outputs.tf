@@ -21,9 +21,15 @@ output "address" {
 output "target_group_name" {
   value = "${module.network_load_balancer.target_group_name}"
 }
+
 output "target_group_arn" {
   value = "${module.network_load_balancer.target_group_arn}"
 }
+
 output "vpc_id" {
   value = "${module.network_load_balancer.vpc_id}"
+}
+
+output "listener_arn" {
+  value = "${module.network_load_balancer.listener_arn}"
 }

@@ -11,5 +11,5 @@ output "subnet_ids" {
 }
 
 output "certificate_arn" {
-  value = "${aws_acm_certificate.wildcard_certificate.arn}"
+  value = "${aws_acm_certificate.certificate.arn}"
 }

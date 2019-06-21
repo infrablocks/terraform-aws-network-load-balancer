@@ -23,9 +23,6 @@ variable "target_group_protocol" {}
 
 variable "health_check_port" {}
 variable "health_check_protocol" {}
-variable "health_check_timeout" {}
 variable "health_check_interval" {}
 variable "health_check_unhealthy_threshold" {}
 variable "health_check_healthy_threshold" {}
-
-
