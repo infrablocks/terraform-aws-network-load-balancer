@@ -2,6 +2,10 @@ output "name" {
   value = "${module.network_load_balancer.name}"
 }
 
+output "arn" {
+  value = "${module.network_load_balancer.arn}"
+}
+
 output "zone_id" {
   value = "${module.network_load_balancer.zone_id}"
 }

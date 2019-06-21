@@ -26,35 +26,9 @@ variable "deployment_identifier" {
   description = "An identifier for this instantiation."
 }
 
-//variable "listeners" {
-//  description = "A list of listener configurations for the NLB."
-//  type = "list"
-//}
-
-//variable "health_check_target" {
-//  description = "The target to use for health checks."
-//  default = "TCP:80"
-//}
-//variable "health_check_timeout" {
-//  description = "The time after which a health check is considered failed in seconds."
-//  default = 5
-//}
-//variable "health_check_interval" {
-//  description = "The time between health check attempts in seconds."
-//  default = 30
-//}
-//variable "health_check_unhealthy_threshold" {
-//  description = "The number of failed health checks before an instance is taken out of service."
-//  default = 2
-//}
-//variable "health_check_healthy_threshold" {
-//  description = "The number of successful health checks before an instance is put into service."
-//  default = 10
-//}
-
 variable "enable_cross_zone_load_balancing" {
   description = "Whether or not to enable cross zone load balancing (\"yes\" or \"no\")."
-  default = "yes"
+  default = "no"
 }
 
 variable "idle_timeout" {
@@ -75,3 +49,58 @@ variable "expose_to_public_internet" {
   description = "Whether or not to the NLB should be internet facing (\"yes\" or \"no\")."
   default = "no"
 }
+
+variable "use_https" {
+  description = "wheter or not to use HTTPS"
+  default = false
+}
+
+variable "target_group_port" {
+  description = "wheter or not to enable NLB healthcheck"
+  default = true
+}
+variable "target_group_type" {
+  description = "The type of target that you must specify when registering targets with this target group. Defaults to instance"
+  default = "instance"
+}
+
+variable "target_group_protocol" {
+  description = "The protocol to use for routing traffic to the targets. Should be one of TCP, TLS, HTTP or HTTPS, defaults to HTTP"
+  default = "HTTP"
+}
+
+variable "health_check_enabled" {
+  description = "wheter or not to enable NLB healthcheck"
+  default = true
+}
+variable "health_check_port" {
+  description = "The port to use to connect with the target. Either ports 1-65536, or traffic-port. Defaults to traffic-port"
+  default = "traffic-port"
+}
+
+variable "health_check_protocol" {
+  description = "The protocol to use to connect with the target. Defaults to HTTP"
+  default = "HTTP"
+}
+
+variable "health_check_timeout" {
+  description = "The time after which a health check is considered failed in seconds."
+  default = 5
+}
+variable "health_check_interval" {
+  description = "The time between health check attempts in seconds."
+  default = 30
+}
+variable "health_check_unhealthy_threshold" {
+  description = "The number of failed health checks before an instance is taken out of service."
+  default = 2
+}
+variable "health_check_healthy_threshold" {
+  description = "The number of successful health checks before an instance is put into service."
+  default = 10
+}
+
+//variable "listener_port" {}
+//variable "listener_protocol" {}
+//variable "listener_certificate_arn" {}
+

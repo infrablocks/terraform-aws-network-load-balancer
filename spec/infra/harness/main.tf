@@ -27,4 +27,17 @@ module "network_load_balancer" {
   include_private_dns_record = "${var.include_private_dns_record}"
 
   expose_to_public_internet = "${var.expose_to_public_internet}"
+
+  use_https = "${var.use_https}"
+  target_group_port = "${var.target_group_port}"
+  target_group_type = "${var.target_group_type}"
+  target_group_protocol = "${var.target_group_protocol}"
+
+  health_check_enabled = "${var.health_check_enabled}"
+  health_check_port = "${var.health_check_port}"
+  health_check_protocol = "${var.health_check_protocol}"
+  health_check_timeout = "${var.health_check_timeout}"
+  health_check_interval = "${var.health_check_interval}"
+  health_check_unhealthy_threshold = "${var.health_check_unhealthy_threshold}"
+  health_check_healthy_threshold = "${var.health_check_healthy_threshold}"
 }

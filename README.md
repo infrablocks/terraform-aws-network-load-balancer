@@ -11,10 +11,9 @@ The load balancer requires:
 * A domain name and public and private hosted zones
  
 The ECS load balancer consists of:
-* An ELB
+* An NLB
   * Deployed across the provided subnet IDs
   * Either internal or internet-facing as specified
-  * With listeners for each of the supplied listener configurations
   * With a health check using the specified target
   * With connection draining as specified
 * A security group allowing access to/from the load balancer according to the 
@@ -114,13 +113,13 @@ for usage instructions.
 |----------------------------------|-------------------------------------------------------------------------------|:-------------------:|:------------------------------------:|
 | region                           | The region into which to deploy the load balancer                             | -                   | yes                                  |
 | vpc_id                           | The ID of the VPC into which to deploy the load balancer                      | -                   | yes                                  |
-| subnet_ids                       | The IDs of the subnets for the ELB                                            | -                   | yes                                  |
+| subnet_ids                       | The IDs of the subnets for the NLB                                            | -                   | yes                                  |
 | component                        | The component for which the load balancer is being created                    | -                   | yes                                  |
 | deployment_identifier            | An identifier for this instantiation                                          | -                   | yes                                  |
 | domain_name                      | The domain name of the supplied Route 53 zones                                | -                   | yes                                  |
 | public_zone_id                   | The ID of the public Route 53 zone                                            | -                   | if include_public_dns_record is yes  |
 | private_zone_id                  | The ID of the private Route 53 zone                                           | -                   | if include_private_dns_record is yes |
-| listeners                        | A list of listener configurations for the ELB                                 | -                   | yes                                  |
+| listeners                        | A list of listener configurations for the NLB                                 | -                   | yes                                  |
 | access_control                   | A list of access control configurations for the security groups               | -                   | yes                                  |
 | egress_cidrs                     | The CIDRs that the load balancer is allowed to access                         | The CIDR of the VPC | no                                   |
 | health_check_target              | The target to use for health checks                                           | TCP:80              | yes                                  |
@@ -129,21 +128,20 @@ for usage instructions.
 | health_check_unhealthy_threshold | The number of failed health checks before an instance is taken out of service | 2                   | yes                                  |
 | health_check_healthy_threshold   | The number of successful health checks before an instance is put into service | 10                  | yes                                  |
 | enable_cross_zone_load_balancing | Whether or not to enable cross zone load balancing ("yes" or "no")            | yes                 | yes                                  |
-| enable_connection_draining       | Whether or not to enable connection draining ("yes" or "no")                  | no                  | yes                                  |
-| connection_draining_timeout      | The time after which connection draining is aborted in seconds                | 300                 | yes                                  |
 | idle_timeout                     | The time after which idle connections are closed                              | 60                  | yes                                  |
 | include_public_dns_record        | Whether or not to create a public DNS entry ("yes" or "no")                   | no                  | yes                                  |
 | include_private_dns_record       | Whether or not to create a private DNS entry ("yes" or "no")                  | yes                 | yes                                  |
-| expose_to_public_internet        | Whether or not to the ELB should be internet facing ("yes" or "no")           | no                  | yes                                  |
+| expose_to_public_internet        | Whether or not to the NLB should be internet facing ("yes" or "no")           | no                  | yes                                  |
 
 ### Outputs
 
 | Name                                    | Description                                               |
 |-----------------------------------------|-----------------------------------------------------------|
-| name                                    | The name of the created ELB                               |
-| zone_id                                 | The zone ID of the created ELB                            |
-| dns_name                                | The DNS name of the created ELB                           |
-| address                                 | The address of the DNS record(s) for the created ELB      |
+| name                                    | The name of the created NLB                               |
+| arn                                     | The arn of the created NLB                               |
+| zone_id                                 | The zone ID of the created NLB                            |
+| dns_name                                | The DNS name of the created NLB                           |
+| address                                 | The address of the DNS record(s) for the created NLB      |
 
 
 Development
