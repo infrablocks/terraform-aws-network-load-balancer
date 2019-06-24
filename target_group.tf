@@ -1,5 +1,5 @@
 resource "aws_lb_target_group" "load_balancer_target_group" {
-  name        = "tg-${var.component}-${var.deployment_identifier}"
+  name        = "tg-${var.component}"
   port        = "${var.target_group_port}"
   target_type = "${var.target_group_type}"
   protocol    = "${var.target_group_protocol}"
