@@ -58,12 +58,11 @@ variable "expose_to_public_internet" {
 
 variable "use_https" {
   description = "wheter or not to use HTTPS"
-  default     = false
+  default     = "no"
 }
 
 variable "target_group_port" {
-  description = "wheter or not to enable NLB healthcheck"
-  default     = true
+  description = "The port that the application is listening on"
 }
 
 variable "target_group_type" {
@@ -72,7 +71,7 @@ variable "target_group_type" {
 }
 
 variable "target_group_protocol" {
-  description = "The protocol to use for routing traffic to the targets. Should be one of TCP, TLS, defaults to TCP"
+  description = "The protocol to use for routing traffic to the targets. Should be either TCP or TLS, defaults to TCP"
   default     = "TCP"
 }
 
