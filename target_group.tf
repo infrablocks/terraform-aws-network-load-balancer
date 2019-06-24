@@ -13,7 +13,7 @@ resource "aws_lb_target_group" "load_balancer_target_group" {
     unhealthy_threshold = "${var.health_check_unhealthy_threshold}"
   }
 
-  tags {
+  tags = {
     Name                 = "tg-${var.component}-${var.deployment_identifier}"
     Component            = "${var.component}"
     DeploymentIdentifier = "${var.deployment_identifier}"
