@@ -20,6 +20,8 @@ variable "use_https" {}
 variable "target_group_port" {}
 variable "target_group_type" {}
 variable "target_group_protocol" {}
+variable "listener_port" {}
+variable "listener_protocol" {}
 
 variable "health_check_port" {}
 variable "health_check_protocol" {}
