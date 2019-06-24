@@ -10,9 +10,9 @@ module "network_load_balancer" {
   source = "../../../../"
 
   region                   = "${var.region}"
-  vpc_id                   = "${data.terraform_remote_state.prerequisites.vpc_id}"
-  subnet_ids               = "${split(",", data.terraform_remote_state.prerequisites.subnet_ids)}"
-  listener_certificate_arn = "${data.terraform_remote_state.prerequisites.certificate_arn}"
+  vpc_id                   = "${data.terraform_remote_state.prerequisites.outputs.vpc_id}"
+  subnet_ids               = "${split(",", data.terraform_remote_state.prerequisites.outputs.subnet_ids)}"
+  listener_certificate_arn = "${data.terraform_remote_state.prerequisites.outputs.certificate_arn}"
 
   domain_name     = "${var.domain_name}"
   public_zone_id  = "${var.public_zone_id}"
