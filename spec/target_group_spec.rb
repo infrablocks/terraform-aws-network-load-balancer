@@ -17,12 +17,12 @@ describe 'Target Group' do
   it {should belong_to_vpc(vpc)}
 
   its(:protocol) {should eq vars.target_group_protocol}
-  its(:port) {should eq vars.target_group_port}
+  its(:port) {should eq vars.target_group_port.to_i}
   its(:target_type) {should eq vars.target_group_type}
 
   context 'healthcheck' do
     its(:health_check_protocol) {should eq vars.health_check_protocol}
-    its(:health_check_port) {should eq vars.health_check_port}
+    its(:health_check_port) {should eq vars.health_check_port.to_i}
     its(:health_check_interval_seconds) {should eq vars.health_check_interval}
   end
 
@@ -41,6 +41,4 @@ describe 'Target Group' do
     it {should include({key: 'DeploymentIdentifier',
                         value: deployment_identifier})}
   end
-
-
 end

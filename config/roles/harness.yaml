@@ -1,0 +1,37 @@
+---
+source_directory: "spec/infra/harness"
+state_file: "%{hiera('project_directory')}/state/harness.tfstate"
+
+vars:
+  region: "%{hiera('region')}"
+
+  component: "%{hiera('component')}"
+  deployment_identifier: "%{hiera('deployment_identifier')}"
+
+  domain_name: "%{hiera('domain_name')}"
+  public_zone_id: "%{hiera('public_zone_id')}"
+  private_zone_id: "%{hiera('private_zone_id')}"
+
+  enable_cross_zone_load_balancing: "%{hiera('enable_cross_zone_load_balancing')}"
+
+  idle_timeout: "%{hiera('idle_timeout')}"
+
+  include_public_dns_record: "%{hiera('include_public_dns_record')}"
+  include_private_dns_record: "%{hiera('include_private_dns_record')}"
+
+  expose_to_public_internet: "%{hiera('expose_to_public_internet')}"
+  use_https: "%{hiera('use_https')}"
+
+  target_group_port: "%{hiera('target_group_port')}"
+  target_group_type: "%{hiera('target_group_type')}"
+  target_group_protocol: "%{hiera('target_group_protocol')}"
+
+  health_check_port: "%{hiera('health_check_port')}"
+  health_check_protocol: "%{hiera('health_check_protocol')}"
+  health_check_healthy_threshold: "%{hiera('health_check_healthy_threshold')}"
+  health_check_unhealthy_threshold: "%{hiera('health_check_unhealthy_threshold')}"
+  health_check_interval: "%{hiera('health_check_interval')}"
+
+  listener_port: "%{hiera('listener_port')}"
+  listener_protocol: "%{hiera('listener_protocol')}"
+

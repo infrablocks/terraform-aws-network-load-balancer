@@ -10,8 +10,7 @@ describe 'Listener' do
   subject {nlb_listener(listener)}
 
   it {should exist}
-  its(:port) {should eq vars.listener_port}
+  its(:port) {should eq vars.listener_port.to_i}
   its(:protocol) {should eq vars.listener_protocol}
   # its(:certificates) {should eq certificate}
-
 end
