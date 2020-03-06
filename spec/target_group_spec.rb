@@ -22,8 +22,10 @@ describe 'Target Group' do
 
   context 'healthcheck' do
     its(:health_check_protocol) {should eq vars.health_check_protocol}
-    its(:health_check_port) {should eq vars.health_check_port.to_i}
-    its(:health_check_interval_seconds) {should eq vars.health_check_interval}
+    its(:health_check_port) {should eq vars.health_check_port}
+    its(:health_check_interval_seconds) {
+      should eq vars.health_check_interval.to_i
+    }
   end
 
   context 'tags' do
