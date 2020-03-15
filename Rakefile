@@ -90,23 +90,23 @@ end
 namespace :deployment do
   namespace :prerequisites do
     RakeTerraform.define_command_tasks(
-        configuration_name: 'preliminary infrastructure',
+        configuration_name: 'prerequisites',
         argument_names: [:deployment_identifier]
     ) do |t, args|
-      deployment_configuration = configuration.for(:prerequisites, args)
+      deployment_configuration =
+          configuration.for(:prerequisites, args)
 
       t.source_directory = deployment_configuration.source_directory
       t.work_directory = deployment_configuration.work_directory
 
       t.state_file = deployment_configuration.state_file
-
-      t.vars = deployment_configuration.vars.to_h
+      t.vars = deployment_configuration.vars
     end
   end
 
   namespace :harness do
     RakeTerraform.define_command_tasks(
-        configuration_name: 'network load balancer module',
+        configuration_name: 'harness',
         argument_names: [:deployment_identifier]
     ) do |t, args|
       deployment_configuration = configuration.for(:harness, args)
@@ -115,8 +115,7 @@ namespace :deployment do
       t.work_directory = deployment_configuration.work_directory
 
       t.state_file = deployment_configuration.state_file
-
-      t.vars = deployment_configuration.vars.to_h
+      t.vars = deployment_configuration.vars
     end
   end
 end
