@@ -12,8 +12,12 @@ module "base_network" {
   private_zone_id = var.private_zone_id
 }
 
+locals {
+  address = "${var.component}-${var.deployment_identifier}.${var.domain_name}"
+}
+
 resource "aws_acm_certificate" "certificate" {
-  domain_name = "${var.component}-${var.deployment_identifier}.${var.domain_name}"
+  domain_name = local.address
   validation_method = "DNS"
 
   tags = {
@@ -28,11 +32,13 @@ resource "aws_acm_certificate" "certificate" {
 }
 
 resource "aws_route53_record" "cert_validation" {
-  name = aws_acm_certificate.certificate.domain_validation_options.0.resource_record_name
-  type = aws_acm_certificate.certificate.domain_validation_options.0.resource_record_type
+  for_each = aws_acm_certificate.certificate.domain_validation_options
+
+  name = each.value.resource_record_name
+  type = each.value.resource_record_type
   zone_id = var.public_zone_id
   records = [
-    aws_acm_certificate.certificate.domain_validation_options.0.resource_record_value
+    each.value.resource_record_value
   ]
   ttl = 60
 }
