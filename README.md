@@ -101,9 +101,9 @@ module "network_load_balancer" {
 
 As mentioned above, the load balancer deploys into an existing base network. 
 Whilst the base network can be created using any mechanism you like, the 
-[AWS Base Networking](https://github.com/tobyclemson/terraform-aws-base-networking)
+[AWS Base Networking](https://github.com/infrablocks/terraform-aws-base-networking)
 module will create everything you need. See the 
-[docs](https://github.com/tobyclemson/terraform-aws-base-networking/blob/master/README.md)
+[docs](https://github.com/infrablocks/terraform-aws-base-networking/blob/master/README.md)
 for usage instructions.
 
 See the 
