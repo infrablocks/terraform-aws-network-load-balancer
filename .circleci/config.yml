@@ -9,7 +9,7 @@ jobs:
       - run: ./scripts/ci/common/install-git-crypt.sh
       - run: ./scripts/ci/steps/test.sh
   merge_pull_request:
-    working_directory: ~/source
+    working_directory: ~/terraform-aws-network-load-balancer
     docker:
       - image: ruby:2.7.5
     steps:
