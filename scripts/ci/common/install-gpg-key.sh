@@ -9,6 +9,11 @@ PROJECT_DIR="$( cd "$SCRIPT_DIR/../../.." && pwd )"
 
 cd "$PROJECT_DIR"
 
-git crypt unlock
-
-./go version:release
+set +e
+openssl version
+openssl aes-256-cbc \
+    -d \
+    -md sha1 \
+    -in ./.circleci/gpg.private.enc \
+    -k "${ENCRYPTION_PASSPHRASE}" | gpg --import -
+set -e

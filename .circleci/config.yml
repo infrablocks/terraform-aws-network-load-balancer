@@ -3,26 +3,40 @@ jobs:
   test:
     working_directory: ~/terraform-aws-network-load-balancer
     docker:
-      - image: ruby:2.6.0
+      - image: ruby:2.7.5
     steps:
       - checkout
       - run: ./scripts/ci/common/install-git-crypt.sh
       - run: ./scripts/ci/steps/test.sh
-  prerelease:
-    working_directory: ~/terraform-aws-network-load-balancer
+  merge_pull_request:
+    working_directory: ~/source
     docker:
-      - image: ruby:2.6.0
+      - image: ruby:2.7.5
     steps:
       - checkout
       - run: ./scripts/ci/common/install-git-crypt.sh
+      - run: ./scripts/ci/common/install-gpg-key.sh
+      - run: ./scripts/ci/common/configure-git.sh
+      - run: ./scripts/ci/steps/merge-pull-request.sh
+  prerelease:
+    working_directory: ~/terraform-aws-network-load-balancer
+    docker:
+      - image: ruby:2.7.5
+    steps:
+      - checkout
+      - run: ./scripts/ci/common/install-git-crypt.sh
+      - run: ./scripts/ci/common/install-gpg-key.sh
+      - run: ./scripts/ci/common/configure-git.sh
       - run: ./scripts/ci/steps/prerelease.sh
   release:
     working_directory: ~/terraform-aws-network-load-balancer
     docker:
-      - image: ruby:2.6.0
+      - image: ruby:2.7.5
     steps:
       - checkout
       - run: ./scripts/ci/common/install-git-crypt.sh
+      - run: ./scripts/ci/common/install-gpg-key.sh
+      - run: ./scripts/ci/common/configure-git.sh
       - run: ./scripts/ci/steps/release.sh
 workflows:
   version: 2
@@ -40,6 +54,12 @@ workflows:
           filters:
             branches:
               only: main
+      - merge_pull_request:
+          requires:
+            - test
+          filters:
+            branches:
+              only: /^dependabot.*/
       - hold:
           type: approval
           requires:
