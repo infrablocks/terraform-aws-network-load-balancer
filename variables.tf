@@ -113,3 +113,21 @@ variable "listener_protocol" {
 variable "listener_certificate_arn" {
   description = "The ARN of the default SSL server certificate"
 }
+
+variable "enable_deletion_protection" {
+  description = "This will prevent Terraform from deleting the load balancer"
+  default = false
+}
+variable "bucket_name" {
+  description = "The S3 bucket prefix. Logs are stored in the root if not configured"
+  type    = string
+  default = "${var.component}-${var.deployment_identifier}"
+}
+variable "log_bucket_prefix" {
+  type    = string
+  default = "nlb-${var.component}-${var.deployment_identifier}"
+}
+variable "access_logs_enabled" {
+  type    = bool
+  default = false
+}
