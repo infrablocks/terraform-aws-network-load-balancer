@@ -1,3 +1,21 @@
+locals {
+  target_groups_output = {
+    for target_group in var.target_groups : target_group.key => {
+      id         = aws_lb_target_group.target_group[target_group.key].id,
+      name       = aws_lb_target_group.target_group[target_group.key].name,
+      arn        = aws_lb_target_group.target_group[target_group.key].arn,
+      arn_suffix = aws_lb_target_group.target_group[target_group.key].arn_suffix,
+    }
+  }
+
+  listeners_output = {
+    for listener in var.listeners : listener.key => {
+      arn             = aws_lb_listener.listener[listener.key].arn,
+      certificate_arn = aws_lb_listener.listener[listener.key].certificate_arn
+    }
+  }
+}
+
 output "name" {
   description = "The name of the created NLB."
   value = aws_lb.load_balancer.name
@@ -35,35 +53,15 @@ output "dns_name" {
 
 output "address" {
   description = "The address of the DNS record(s) for the created NLB."
-  value = "${var.component}-${var.deployment_identifier}.${var.domain_name}"
+  value = length(var.dns.records) > 0 ? "${var.component}-${var.deployment_identifier}.${var.dns.domain_name}" : ""
 }
 
-output "target_group_id" {
-  description = "The id of the target group"
-  value = aws_lb_target_group.load_balancer_target_group.id
+output "target_groups" {
+  description = "Details of the created target groups."
+  value = local.target_groups_output
 }
 
-output "target_group_arn" {
-  description = "The arn of the target group"
-  value = aws_lb_target_group.load_balancer_target_group.arn
-}
-
-output "target_group_arn_suffix" {
-  description = "The arn_suffix of the target group"
-  value = aws_lb_target_group.load_balancer_target_group.arn_suffix
-}
-
-output "target_group_name" {
-  description = "The name of the target group"
-  value = aws_lb_target_group.load_balancer_target_group.name
-}
-
-output "listener_arn" {
-  description = "Listener's ARN"
-  value = aws_lb_listener.load_balancer_listener.arn
-}
-
-output "listener_certificate_arn" {
-  description = "Listener's certificate ARN"
-  value = aws_lb_listener.load_balancer_listener.certificate_arn
+output "listeners" {
+  description = "Details of the created listeners."
+  value = local.listeners_output
 }
