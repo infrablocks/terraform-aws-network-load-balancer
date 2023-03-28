@@ -88,37 +88,3 @@ variable "listeners" {
   default = []
   nullable = false
 }
-
-variable "security_groups" {
-  description = "Details of security groups to add to the NLB, including the default security group."
-  type = object({
-    default: object({
-      associate: string,
-      ingress_rule: object({
-        include: string,
-        cidrs: list(string)
-      }),
-      egress_rule: object({
-        include: string,
-        from_port: number,
-        to_port: number,
-        cidrs: list(string)
-      }),
-    })
-  })
-  default = {
-    default: {
-      associate: "yes"
-      ingress_rule: {
-        include: "yes",
-        cidrs: null
-      },
-      egress_rule: {
-        include: "yes",
-        from_port: 0,
-        to_port: 65535,
-        cidrs: null
-      }
-    }
-  }
-}

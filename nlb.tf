@@ -2,7 +2,6 @@ resource "aws_lb" "load_balancer" {
   load_balancer_type = "network"
 
   subnets = var.subnet_ids
-  security_groups = local.security_groups.default.associate == "yes" ? [aws_security_group.default["default"].id] : null
 
   internal = var.expose_to_public_internet ? false : true
 
