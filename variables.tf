@@ -108,13 +108,13 @@ variable "security_groups" {
   })
   default = {
     default: {
-      associate: "yes"
+      associate: true
       ingress_rule: {
-        include: "yes",
+        include: true,
         cidrs: null
       },
       egress_rule: {
-        include: "yes",
+        include: true,
         from_port: 0,
         to_port: 65535,
         cidrs: null

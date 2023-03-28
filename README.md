@@ -112,33 +112,34 @@ for more details.
 
 ### Inputs
 
-| Name                             | Description                                                                   | Default             | Required                             |
-|----------------------------------|-------------------------------------------------------------------------------|:-------------------:|:------------------------------------:|
-|region| The region into which to deploy the load balancer|-| yes|
-|vpc_id| The ID of the VPC into which to deploy the load balancer	|-| yes|
-|subnet_ids| The IDs of the subnets for the NLB	 |-| yes|
-|component| The component for which the load balancer is being created	|-| yes|
-|deployment_identifier| An identifier for this instantiation	|-| yes|
-|domain_name|The domain name of the supplied Route 53 zones    |-| yes|
-|public_zone_id| The ID of the public Route 53 zone	|-| yes|
-|private_zone_id| The ID of the private Route 53 zone	|-| yes|
-|enable_cross_zone_load_balancing| Whether or not to enable cross zone load balancing (\"yes\" or \"no\").|no| no|
-|idle_timeout| The time after which idle connections are closed.|60| no|
-|include_public_dns_record| Whether or not to create a public DNS entry (\"yes\" or \"no\").|no| no|
-|include_private_dns_record| Whether or not to create a private DNS entry (\"yes\" or \"no\").|yes| no|
-|expose_to_public_internet| Whether or not to the NLB should be internet facing (\"yes\" or \"no\").|no| no|
-|use_https| whether or not to use HTTPS|no| no|
-|target_group_port|The port that the application is listening on|-| yes|
-|target_group_type|The type of target that you must specify when registering targets with this target group.|instance| no|
-|target_group_protocol| The protocol to use for routing traffic to the targets. Should be either TCP or TLS|TCP| no|
-|health_check_port|The port to use to connect with the target. Either ports 1-65536, or traffic-port|traffic-port|no|
-|health_check_protocol| The protocol to use for health checks	|TLS| no|
-|health_check_interval|The time between health check attempts in seconds	 |30| no|
-|health_check_unhealthy_threshold| The number of failed health checks before an instance is taken out of service	|2| no|
-|health_check_healthy_threshold| The number of successful health checks before an instance is put into service	|10| no|
-|listener_port| Port that NLB listens on|443| no|
-|listener_protocol| Protocol that the NLB listens on|TLS| no|
-|listener_certificate_arn|certificate ARN to be used by the certificate|-| yes|
+| Name                             | Description                                                                               |      Default      | Required                             |
+|----------------------------------|-------------------------------------------------------------------------------------------|:-----------------:|:------------------------------------:|
+|region| The region into which to deploy the load balancer                                         |         -         | yes|
+|vpc_id| The ID of the VPC into which to deploy the load balancer	                                 |         -         | yes|
+|subnet_ids| The IDs of the subnets for the NLB	                                                       |         -         | yes|
+|component| The component for which the load balancer is being created	                               |         -         | yes|
+|deployment_identifier| An identifier for this instantiation	                                                     |         -         | yes|
+|domain_name| The domain name of the supplied Route 53 zones                                            |         -         | yes|
+|public_zone_id| The ID of the public Route 53 zone	                                                       |         -         | yes|
+|private_zone_id| The ID of the private Route 53 zone	                                                      |         -         | yes|
+|enable_cross_zone_load_balancing| Whether or not to enable cross zone load balancing (\"yes\" or \"no\").                   |        no         | no|
+|idle_timeout| The time after which idle connections are closed.                                         |        60         | no|
+|include_public_dns_record| Whether or not to create a public DNS entry (\"yes\" or \"no\").                          |        no         | no|
+|include_private_dns_record| Whether or not to create a private DNS entry (\"yes\" or \"no\").                         |        yes        | no|
+|expose_to_public_internet| Whether or not to the NLB should be internet facing (\"yes\" or \"no\").                  |        no         | no|
+|security_groups| Details of security groups to add to the NLB, including the default security group.       |         `{ default: { associate: true, ingress_rule: { include: true, cidrs: null }, egress_rule: { include: true,  from_port: 0,  to_port: 65535,  cidrs: null } } }`          | no|
+|use_https| whether or not to use HTTPS                                                               |        no         | no|
+|target_group_port| The port that the application is listening on                                             |         -         | yes|
+|target_group_type| The type of target that you must specify when registering targets with this target group. |     instance      | no|
+|target_group_protocol| The protocol to use for routing traffic to the targets. Should be either TCP or TLS       |        TCP        | no|
+|health_check_port| The port to use to connect with the target. Either ports 1-65536, or traffic-port         |   traffic-port    |no|
+|health_check_protocol| The protocol to use for health checks	                                                    |        TLS        | no|
+|health_check_interval| The time between health check attempts in seconds	                                        |        30         | no|
+|health_check_unhealthy_threshold| The number of failed health checks before an instance is taken out of service	            |         2         | no|
+|health_check_healthy_threshold| The number of successful health checks before an instance is put into service	            |        10         | no|
+|listener_port| Port that NLB listens on                                                                  |        443        | no|
+|listener_protocol| Protocol that the NLB listens on                                                          |        TLS        | no|
+|listener_certificate_arn| certificate ARN to be used by the certificate                                             |         -         | yes|
 
 ### Outputs
 
