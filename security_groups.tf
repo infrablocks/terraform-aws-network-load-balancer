@@ -1,5 +1,5 @@
 resource "aws_security_group" "default" {
-  for_each = (local.security_groups.default.associate) ? local.security_groups : {}
+  for_each = (local.security_groups.default.associate == "yes") ? local.security_groups : {}
 
   name = "${var.component}-${var.deployment_identifier}"
   description = "NLB security group for: ${var.component}, deployment: ${var.deployment_identifier}"
@@ -13,7 +13,7 @@ resource "aws_security_group" "default" {
 }
 
 resource "aws_security_group_rule" "default_ingress" {
-  for_each = (local.security_groups.default.associate && local.security_groups.default.ingress_rule.include) ? local.listeners : {}
+  for_each = (local.security_groups.default.associate == "yes" && local.security_groups.default.ingress_rule.include == "yes") ? local.listeners : {}
 
   type = "ingress"
 
@@ -27,7 +27,7 @@ resource "aws_security_group_rule" "default_ingress" {
 }
 
 resource "aws_security_group_rule" "default_egress" {
-  for_each = (local.security_groups.default.associate && local.security_groups.default.egress_rule.include) ? local.security_groups : {}
+  for_each = (local.security_groups.default.associate == "yes" && local.security_groups.default.egress_rule.include == "yes") ? local.security_groups : {}
 
   type = "egress"
 

@@ -313,7 +313,7 @@ describe 'security groups' do
       @plan = plan(role: :root) do |vars|
         vars.security_groups = {
           default: {
-            associate: false,
+            associate: 'no',
             ingress_rule: {
               include: nil,
               cidrs: nil
@@ -352,13 +352,13 @@ describe 'security groups' do
       @plan = plan(role: :root) do |vars|
         vars.security_groups = {
           default: {
-            associate: true,
+            associate: 'yes',
             ingress_rule: {
               include: nil,
               cidrs: nil
             },
             egress_rule: {
-              include: false,
+              include: 'no',
               from_port: nil,
               to_port: nil,
               cidrs: nil
@@ -380,13 +380,13 @@ describe 'security groups' do
       @plan = plan(role: :root) do |vars|
         vars.security_groups = {
           default: {
-            associate: true,
+            associate: 'yes',
             ingress_rule: {
               include: nil,
               cidrs: nil
             },
             egress_rule: {
-              include: true,
+              include: 'yes',
               from_port: nil,
               to_port: nil,
               cidrs: nil
@@ -409,9 +409,9 @@ describe 'security groups' do
       @plan = plan(role: :root) do |vars|
         vars.security_groups = {
           default: {
-            associate: true,
+            associate: 'yes',
             ingress_rule: {
-              include: false,
+              include: 'no',
               cidrs: nil
             },
             egress_rule: {
@@ -438,9 +438,9 @@ describe 'security groups' do
       @plan = plan(role: :root) do |vars|
         vars.security_groups = {
           default: {
-            associate: true,
+            associate: 'yes',
             ingress_rule: {
-              include: false,
+              include: 'no',
               cidrs: nil
             },
             egress_rule: {
@@ -468,9 +468,9 @@ describe 'security groups' do
       @plan = plan(role: :root) do |vars|
         vars.security_groups = {
           default: {
-            associate: true,
+            associate: 'yes',
             ingress_rule: {
-              include: true,
+              include: 'yes',
               cidrs: nil
             },
             egress_rule: {
@@ -534,9 +534,9 @@ describe 'security groups' do
       @plan = plan(role: :root) do |vars|
         vars.security_groups = {
           default: {
-            associate: true,
+            associate: 'yes',
             ingress_rule: {
-              include: true,
+              include: 'yes',
               cidrs: nil
             },
             egress_rule: {

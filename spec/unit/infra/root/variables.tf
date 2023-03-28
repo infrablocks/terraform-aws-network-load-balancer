@@ -57,13 +57,13 @@ variable "listeners" {
 variable "security_groups" {
   type = object({
     default: object({
-      associate: bool,
+      associate: string,
       ingress_rule: object({
-        include: bool,
+        include: string,
         cidrs: list(string)
       }),
       egress_rule: object({
-        include: bool,
+        include: string,
         from_port: number,
         to_port: number,
         cidrs: list(string)

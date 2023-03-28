@@ -14,9 +14,9 @@ locals {
   raw_default_security_group_egress_rule_from_port = try(var.security_groups.default.egress_rule.from_port, null)
   raw_default_security_group_egress_rule_to_port   = try(var.security_groups.default.egress_rule.to_port, null)
 
-  associate_default_security_group            = local.raw_associate_default_security_group == null ? true : local.raw_associate_default_security_group
-  include_default_security_group_ingress_rule = local.raw_include_default_security_group_ingress_rule == null ? true : local.raw_include_default_security_group_ingress_rule
-  include_default_security_group_egress_rule  = local.raw_include_default_security_group_egress_rule == null ? true : local.raw_include_default_security_group_egress_rule
+  associate_default_security_group            = local.raw_associate_default_security_group == null ? "yes" : local.raw_associate_default_security_group
+  include_default_security_group_ingress_rule = local.raw_include_default_security_group_ingress_rule == null ? "yes" : local.raw_include_default_security_group_ingress_rule
+  include_default_security_group_egress_rule  = local.raw_include_default_security_group_egress_rule == null ? "yes" : local.raw_include_default_security_group_egress_rule
   default_security_group_ingress_rule_cidrs   = local.raw_default_security_group_ingress_rule_cidrs == null ? [
     data.aws_vpc.vpc.cidr_block
   ] : local.raw_default_security_group_ingress_rule_cidrs
