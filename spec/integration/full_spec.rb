@@ -180,6 +180,52 @@ describe 'full' do
     end
   end
 
+  describe 'security group' do
+    subject(:load_balancer) { alb(name) }
+
+    let(:security_groups) do
+      load_balancer.security_groups.map { |sg| security_group(sg) }
+    end
+
+    # rubocop:disable RSpec/MultipleExpectations
+    it('associates a security group allowing inbound TCP ' \
+       'for all listener ports for the supplied ingress CIDRs') do
+      expect(security_groups.length).to(eq(1))
+
+      security_group = security_groups.first
+
+      expect(security_group.inbound_rule_count).to(eq(1))
+
+      ingress_rule = security_group.ip_permissions.first
+
+      expect(ingress_rule.from_port).to(eq(443))
+      expect(ingress_rule.to_port).to(eq(443))
+      expect(ingress_rule.ip_protocol).to(eq('tcp'))
+      expect(ingress_rule.ip_ranges.map(&:cidr_ip))
+        .to(eq([vpc_cidr]))
+    end
+    # rubocop:enable RSpec/MultipleExpectations
+
+    # rubocop:disable RSpec/MultipleExpectations
+    it('associates a security group allowing outbound TCP ' \
+       'for all ports for the supplied egress CIDRs') do
+      expect(security_groups.length).to(eq(1))
+
+      security_group = security_groups.first
+
+      expect(security_group.outbound_rule_count).to(eq(1))
+
+      egress_rule = security_group.ip_permissions_egress.first
+
+      expect(egress_rule.from_port).to(eq(0))
+      expect(egress_rule.to_port).to(eq(65_535))
+      expect(egress_rule.ip_protocol).to(eq('tcp'))
+      expect(egress_rule.ip_ranges.map(&:cidr_ip))
+        .to(eq([vpc_cidr]))
+    end
+    # rubocop:enable RSpec/MultipleExpectations
+  end
+
   describe 'target group' do
     subject(:target_group) { nlb_target_group(target_group_name) }
 
