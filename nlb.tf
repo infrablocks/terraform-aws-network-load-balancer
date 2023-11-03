@@ -1,22 +1,20 @@
 resource "aws_lb" "load_balancer" {
   load_balancer_type = "network"
 
-  name = "nlb-${var.component}"
   subnets = var.subnet_ids
 
-  internal = var.expose_to_public_internet == "yes" ? false : true
+  internal = var.expose_to_public_internet ? false : true
 
   enable_deletion_protection  = var.enable_deletion_protection
 
-  enable_cross_zone_load_balancing = var.enable_cross_zone_load_balancing == "yes" ? true : false
+  enable_cross_zone_load_balancing = var.enable_cross_zone_load_balancing
 
-  idle_timeout = var.idle_timeout
-    dynamic "access_logs" {
-    for_each = var.access_logs_enabled == false ? [] : [1]
+  dynamic "access_logs" {
+    for_each = var.enable_access_logs ? [0] : []
     content {
-      bucket  = var.bucket
-      prefix  = var.log_bucket_prefix
-      enabled = var.access_logs_enabled
+      bucket  = var.access_logs_bucket_name
+      prefix  = var.access_logs_bucket_prefix
+      enabled = var.enable_access_logs
     }
   }
 
