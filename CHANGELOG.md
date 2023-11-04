@@ -20,6 +20,14 @@ BACKWARDS INCOMPATIBILITIES / NOTES:
   been removed in favour of the `dns` variable which allows an arbitrary number 
   of records to be created.
 
+IMPROVEMENTS:
+
+* An `enable_deletion_protection` variable has been added, allowing deletion
+  protection to be enabled for the load balancer.
+* An `enable_access_logs` variable has been added, along with 
+  `access_logs_bucket_name` and `access_logs_bucket_prefix` variables, allowing
+  access logs to be configured for the load balancer.
+
 ## 2.0.0 (May 28th, 2021)
 
 BACKWARDS INCOMPATIBILITIES / NOTES:

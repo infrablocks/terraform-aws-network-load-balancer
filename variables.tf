@@ -103,12 +103,13 @@ variable "enable_access_logs" {
 }
 
 variable "access_logs_bucket_name" {
-  description = "The S3 bucket prefix. Logs are stored in the root if not configured"
+  description = "The name of the S3 bucket in which to store access logs when `enable_access_logs` is `true`."
   type    = string
   default = null
 }
 
 variable "access_logs_bucket_prefix" {
+  description = "The prefix to use for objects in the access logs S3 bucket when `enable_access_logs` is `true`. Logs are stored in the root if `null`."
   type    = string
   default = null
 }
