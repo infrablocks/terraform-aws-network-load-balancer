@@ -65,10 +65,10 @@ describe 'NLB' do
         .to(include_resource_creation(type: 'aws_lb')
               .with_attribute_value(
                 :tags, {
-                Name: "nlb-#{component}-#{deployment_identifier}",
-                Component: component,
-                DeploymentIdentifier: deployment_identifier
-              }
+                  Name: "nlb-#{component}-#{deployment_identifier}",
+                  Component: component,
+                  DeploymentIdentifier: deployment_identifier
+                }
               ))
     end
 
@@ -204,8 +204,10 @@ describe 'NLB' do
     before(:context) do
       @plan = plan(role: :root) do |vars|
         vars.enable_access_logs = true
-        vars.access_logs_bucket_name = output(role: :prerequisites, name: 'access_logs_bucket_name')
-        vars.access_logs_bucket_prefix = output(role: :prerequisites, name: 'access_logs_bucket_prefix')
+        vars.access_logs_bucket_name =
+          output(role: :prerequisites, name: 'access_logs_bucket_name')
+        vars.access_logs_bucket_prefix =
+          output(role: :prerequisites, name: 'access_logs_bucket_prefix')
       end
     end
 
@@ -219,14 +221,16 @@ describe 'NLB' do
       expect(@plan)
         .to(include_resource_creation(type: 'aws_lb')
               .with_attribute_value(
-                [:access_logs, 0, :bucket], access_logs_bucket_name))
+                [:access_logs, 0, :bucket], access_logs_bucket_name
+              ))
     end
 
     it 'uses the provided access logs bucket prefix' do
       expect(@plan)
         .to(include_resource_creation(type: 'aws_lb')
               .with_attribute_value(
-                [:access_logs, 0, :prefix], access_logs_bucket_prefix))
+                [:access_logs, 0, :prefix], access_logs_bucket_prefix
+              ))
     end
   end
 
