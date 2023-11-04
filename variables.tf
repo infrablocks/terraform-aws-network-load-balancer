@@ -88,3 +88,28 @@ variable "listeners" {
   default = []
   nullable = false
 }
+
+variable "enable_deletion_protection" {
+  description = "If true, deletion of the load balancer will be disabled via the AWS API. This will prevent Terraform from deleting the load balancer."
+  default = false
+  nullable = false
+}
+
+variable "enable_access_logs" {
+  description = "Whether or not to enable access logs on the load balancer."
+  type    = bool
+  default = false
+  nullable = false
+}
+
+variable "access_logs_bucket_name" {
+  description = "The name of the S3 bucket in which to store access logs when `enable_access_logs` is `true`."
+  type    = string
+  default = null
+}
+
+variable "access_logs_bucket_prefix" {
+  description = "The prefix to use for objects in the access logs S3 bucket when `enable_access_logs` is `true`. Logs are stored in the root if `null`."
+  type    = string
+  default = null
+}

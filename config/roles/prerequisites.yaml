@@ -13,3 +13,6 @@ vars:
   domain_name: "%{hiera('domain_name')}"
   public_zone_id: "%{hiera('public_zone_id')}"
   private_zone_id: "%{hiera('private_zone_id')}"
+
+  access_logs_bucket_name: "%{hiera('access_logs_bucket_name')}"
+  access_logs_bucket_prefix: "%{hiera('access_logs_bucket_prefix')}"

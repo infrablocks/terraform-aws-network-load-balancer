@@ -16,3 +16,6 @@ availability_zones:
 
 public_zone_id: "Z08829023L5IPIQBJOX63"
 private_zone_id: 'Z0211739BXR21FNN139O'
+
+access_logs_bucket_name: "network-load-balancer-%{hiera('deployment_identifier')}"
+access_logs_bucket_prefix: "test-%{hiera('deployment_identifier')}"

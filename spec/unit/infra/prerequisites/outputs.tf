@@ -25,3 +25,11 @@ output "public_zone_id" {
 output "private_zone_id" {
   value = var.private_zone_id
 }
+
+output "access_logs_bucket_name" {
+  value = var.access_logs_bucket_name
+}
+
+output "access_logs_bucket_prefix" {
+  value = var.access_logs_bucket_prefix
+}
