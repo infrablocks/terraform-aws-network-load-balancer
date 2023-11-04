@@ -90,14 +90,16 @@ variable "listeners" {
 }
 
 variable "enable_deletion_protection" {
-  description = "This will prevent Terraform from deleting the load balancer"
+  description = "If true, deletion of the load balancer will be disabled via the AWS API. This will prevent Terraform from deleting the load balancer."
   default = false
   nullable = false
 }
 
 variable "enable_access_logs" {
+  description = "Whether or not to enable access logs on the load balancer."
   type    = bool
   default = false
+  nullable = false
 }
 
 variable "access_logs_bucket_name" {

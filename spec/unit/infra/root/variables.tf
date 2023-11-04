@@ -53,3 +53,20 @@ variable "listeners" {
   }))
   default = null
 }
+
+variable "enable_deletion_protection" {
+  default = null
+}
+
+variable "enable_access_logs" {
+  type    = bool
+  default = null
+}
+
+variable "access_logs_bucket_name" {
+  default = null
+}
+
+variable "access_logs_bucket_prefix" {
+  default = null
+}

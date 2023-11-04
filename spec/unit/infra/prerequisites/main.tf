@@ -30,3 +30,8 @@ module "acm_certificate" {
     aws.san_validation = aws
   }
 }
+
+resource "aws_s3_bucket" "access_logs_bucket" {
+  bucket = var.access_logs_bucket_name
+  force_destroy = true
+}
