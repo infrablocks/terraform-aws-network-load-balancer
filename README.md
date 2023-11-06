@@ -159,7 +159,7 @@ for more details.
 ### Compatibility
 
 This module is compatible with Terraform versions greater than or equal to
-Terraform 1.0.
+Terraform 1.3.
 
 Development
 -----------
